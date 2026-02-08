@@ -14,16 +14,19 @@ const KITS_general_properties = {
 
 }
 
-const kit = {
-    label: {
-        defaultProperties:{
-            ...KITS_general_properties,
-            text:"New Label"
-        },
-        render(kitProperties){
-            const el = document.createElement("p");
-            el.textContent=kitProperties.text;
-            return el;
-        }
-    }
-}
+
+const Kits = {};
+
+
+Kits.Label = {
+    tag: "p",
+    supportProperties:["visible","color","text"],
+    defaultProperties: { ...KITS_general_properties, text: "New Label" },
+    apply(el, props) { el.textContent = props.text; }
+};
+
+Kits.Button = {
+    tag: "button",
+    defaultProps: { ...CommonProps, text: "Button" },
+    apply(el, props) { el.textContent = props.text; }
+};
